@@ -5,6 +5,8 @@ import java.util.Random;
 public class Main {
     static Scanner input = new Scanner(System.in);
     static ArrayList<Paciente> listaEspera = new ArrayList<>(); // Lista de espera para pacientes
+    static ArrayList<Paciente> listaOperados = new ArrayList<>(); // Lista de pacientes operados
+    static ArrayList<Boolean> listaResultados = new ArrayList<>(); // Estado de los pacientes operados (vivo o no)
 
     public static void main(String[] args) {
 
@@ -20,7 +22,7 @@ public class Main {
             System.out.println("1. Añadir paciente a la lista de espera");
             System.out.println("2. Ver lista de espera");
             System.out.println("3. Enviar paciente a quirofano");
-            System.out.println("4. Muestra la relación de pacientes ya operados");
+            System.out.println("4. Muestra la resolucion de los pacientes ya operados");
             System.out.println("5. Salir");
 
             try {
@@ -41,6 +43,7 @@ public class Main {
                         break;
                     case 4:
                         System.out.println("Has seleccionado 'Muestra la relación de pacientes ya operados'");
+                        mostrarPacientesOperados();
                         break;
                     case 5:
                         System.out.println("Saliendo...");
@@ -56,6 +59,9 @@ public class Main {
         } while (menu != 5);
     }
 
+    private static void mostrarPacientesOperados() {
+    }
+
     private static void enviarPacienteQuirofano() {
         if (listaEspera.isEmpty()) {
             System.out.println("No hay pacientes en la lista de espera.");
@@ -64,7 +70,7 @@ public class Main {
 
         Paciente paciente = listaEspera.remove(0);
         Random random = new Random();
-        int probabilidad = random.nextInt(100); // Genera un número entre 0 y 99
+        int probabilidad = random.nextInt(100);
 
         boolean sobrevivio;
         switch (paciente.getGravedad()) {
@@ -81,9 +87,12 @@ public class Main {
                 sobrevivio = probabilidad >= 70; // 70% de morir
                 break;
             default:
-                System.out.println("Gravedad inválida. Asumiendo que el paciente sobrevive.");
+                System.out.println("Toma una tirita"); //Esto es que no hay gravedad, simplemente he puesto un mensaje de error graciosete
                 sobrevivio = true;
         }
+
+        listaOperados.add(paciente);
+        listaResultados.add(sobrevivio);
 
         if (sobrevivio) {
             System.out.println("El paciente " + paciente.getNombre() + " " + paciente.getApellido() + " ha sobrevivido a la operación.");
