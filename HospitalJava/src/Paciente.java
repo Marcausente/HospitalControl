@@ -5,7 +5,7 @@ public class Paciente {
     private int gravedad;
 
     // Constructor
-    public Paciente(String nombre, String apellido, String motivoOperacion, String gravedad) {
+    public Paciente(String nombre, String apellido, String motivoOperacion, int gravedad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.motivoOperacion = motivoOperacion;
