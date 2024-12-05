@@ -78,8 +78,9 @@ public class Main {
     }
 
     private static void agregarPaciente() {
-        String nombre, apellido, motivoOperacion, gravedad;
+        String nombre, apellido, motivoOperacion;
         int menu = 0;
+        int gravedad = 0;
 
         try {
             System.out.print("Introduce el nombre del paciente: ");
@@ -100,7 +101,7 @@ public class Main {
             if (motivoOperacion.isEmpty()) {
                 throw new IllegalArgumentException("El motivo de la operación no puede estar vacío.");
             }
-            gravedad = niveldegravedad(menu);1
+            gravedad = niveldegravedad(menu, gravedad);
 
             Paciente nuevoPaciente = new Paciente(nombre, apellido, motivoOperacion, gravedad);
             listaEspera.add(nuevoPaciente);
@@ -114,8 +115,8 @@ public class Main {
         }
     }
 
-    private static int niveldegravedad(int menu) {
-        int gravedad = 0;
+    private static int niveldegravedad(int menu, int gravedad) {
+
         do {
             System.out.println("Gravedad del paciente");
             System.out.println("1. Gravedad baja");
@@ -140,4 +141,5 @@ public class Main {
         }while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
         return gravedad;
     }
+
 }
