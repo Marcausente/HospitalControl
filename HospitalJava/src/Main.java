@@ -68,10 +68,12 @@ public class Main {
                 Paciente paciente = listaOperados.get(i);
                 boolean sobrevivio = listaResultados.get(i);
                 System.out.println((i + 1) + ". " + paciente.getNombre() + " " + paciente.getApellido() +
-                        " - " + (sobrevivio ? "Vivo" : "Fallecido"));
+                        " - Motivo de la operación: " + paciente.getMotivoOperacion() +
+                        " - Estado: " + (sobrevivio ? "Vivo" : "Fallecido"));
             }
         }
     }
+
 
     private static void enviarPacienteQuirofano() {
         if (listaEspera.isEmpty()) {
@@ -114,15 +116,21 @@ public class Main {
 
 
     private static void mostrarListaEspera() {
-            if (listaEspera.isEmpty()) {
-                System.out.println("La lista de espera está vacía.");
-            } else {
-                System.out.println("Lista de espera:");
-                for (int i = 0; i < listaEspera.size(); i++) {
-                    System.out.println((i + 1) + ". " + listaEspera.get(i));
-                }
+        if (listaEspera.isEmpty()) {
+            System.out.println("La lista de espera está vacía.");
+        } else {
+            System.out.println("==============================");
+            System.out.println("      LISTA DE ESPERA        ");
+            System.out.println("==============================");
+            for (int i = 0; i < listaEspera.size(); i++) {
+                Paciente paciente = listaEspera.get(i);
+                System.out.printf("%d. %s %s | Motivo de la operación: %s%n",
+                        (i + 1), paciente.getNombre(), paciente.getApellido(), paciente.getMotivoOperacion());
             }
+            System.out.println("==============================");
+        }
     }
+
 
     private static void agregarPaciente() {
         String nombre, apellido, motivoOperacion;
