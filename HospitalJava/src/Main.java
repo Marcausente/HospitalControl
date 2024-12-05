@@ -54,6 +54,14 @@ public class Main {
     }
 
     private static void mostrarListaEspera() {
+            if (listaEspera.isEmpty()) {
+                System.out.println("La lista de espera está vacía.");
+            } else {
+                System.out.println("Lista de espera:");
+                for (int i = 0; i < listaEspera.size(); i++) {
+                    System.out.println((i + 1) + ". " + listaEspera.get(i));
+                }
+            }
     }
 
     private static void agregarPaciente() {
