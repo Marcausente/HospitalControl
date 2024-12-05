@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
@@ -62,7 +63,33 @@ public class Main {
         }
 
         Paciente paciente = listaEspera.remove(0);
-        System.out.println("El paciente " + paciente.getNombre() + " " + paciente.getApellido() + " ha sido enviado al quirófano.");
+        Random random = new Random();
+        int probabilidad = random.nextInt(100); // Genera un número entre 0 y 99
+
+        boolean sobrevivio;
+        switch (paciente.getGravedad()) {
+            case 1: // Gravedad baja
+                sobrevivio = probabilidad >= 10; // 10% de morir
+                break;
+            case 2: // Gravedad media
+                sobrevivio = probabilidad >= 30; // 30% de morir
+                break;
+            case 3: // Gravedad alta
+                sobrevivio = probabilidad >= 50; // 50% de morir
+                break;
+            case 4: // Gravedad muy alta
+                sobrevivio = probabilidad >= 70; // 70% de morir
+                break;
+            default:
+                System.out.println("Gravedad inválida. Asumiendo que el paciente sobrevive.");
+                sobrevivio = true;
+        }
+
+        if (sobrevivio) {
+            System.out.println("El paciente " + paciente.getNombre() + " " + paciente.getApellido() + " ha sobrevivido a la operación.");
+        } else {
+            System.out.println("El paciente " + paciente.getNombre() + " " + paciente.getApellido() + " ha fallecido durante la operación.");
+        }
     }
 
 
@@ -137,6 +164,8 @@ public class Main {
                 case 4:
                     System.out.println("El paciente es de gravedad muy alta");
                     gravedad = 4;
+                default:
+                    System.out.println("ERROR, introduce un numero valido");
             }
         }while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
         return gravedad;

@@ -46,4 +46,8 @@ public class Paciente {
                 ", motivoOperacion='" + motivoOperacion + '\'' +
                 '}';
     }
+
+    public int getGravedad() {
+        return gravedad;
+    }
 }
