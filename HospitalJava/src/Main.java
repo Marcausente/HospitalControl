@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
+    static ArrayList<Paciente> listaEspera = new ArrayList<>(); // Lista de espera para pacientes
     public static void main(String[] args) {
 
       int menu = 0;
