@@ -18,9 +18,32 @@ public class Main {
             System.out.println("3. Enviar paciente a quirofano");
             System.out.println("4. Muestra la relación de pacientes ya operados");
             System.out.println("5. Salir");
-            menu = input.nextInt();
-            switch (menu){
 
+            try {
+            menu = input.nextInt();
+            switch (menu) {
+                case 1:
+                    System.out.println("Has seleccionado 'Añadir paciente a la lista de espera'");
+                    break;
+                case 2:
+                    System.out.println("Has seleccionado 'Ver la lista de espera'");
+                    break;
+                case 3:
+                    System.out.println("Has seleccionado 'Enviar paciente al quirofano'");
+                    break;
+                case 4:
+                    System.out.println("Has seleccionado 'Muestra la relación de pacientes ya operados'");
+                    break;
+                case 5:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("ERROR, selecciona un numero valido");
+                    break;
+            }
+            } catch (Exception e) {
+                System.out.println("ERROR: Por favor ingresa un dato valido");
+                input.nextLine();
             }
         }while (menu != 5);
     }
