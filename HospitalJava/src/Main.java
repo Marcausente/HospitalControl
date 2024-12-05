@@ -24,6 +24,7 @@ public class Main {
 
             try {
                 menu = input.nextInt();
+                input.nextLine(); //Esto limpia el buffer que si no se queda vacio
                 switch (menu) {
                     case 1:
                         System.out.println("Has seleccionado 'Añadir paciente a la lista de espera'");
@@ -77,7 +78,8 @@ public class Main {
     }
 
     private static void agregarPaciente() {
-        String nombre, apellido, motivoOperacion;
+        String nombre, apellido, motivoOperacion, gravedad;
+        int menu = 0;
 
         try {
             System.out.print("Introduce el nombre del paciente: ");
@@ -94,11 +96,13 @@ public class Main {
 
             System.out.print("Introduce el motivo de la operación: ");
             motivoOperacion = input.nextLine();
+
             if (motivoOperacion.isEmpty()) {
                 throw new IllegalArgumentException("El motivo de la operación no puede estar vacío.");
             }
+            gravedad = niveldegravedad(menu);1
 
-            Paciente nuevoPaciente = new Paciente(nombre, apellido, motivoOperacion);
+            Paciente nuevoPaciente = new Paciente(nombre, apellido, motivoOperacion, gravedad);
             listaEspera.add(nuevoPaciente);
             System.out.println("Paciente añadido a la lista de espera.");
 
@@ -108,5 +112,32 @@ public class Main {
         } catch (Exception e) {
             System.out.println("ERROR inesperado: " + e.getMessage());
         }
+    }
+
+    private static int niveldegravedad(int menu) {
+        int gravedad = 0;
+        do {
+            System.out.println("Gravedad del paciente");
+            System.out.println("1. Gravedad baja");
+            System.out.println("2. Gravedad media");
+            System.out.println("3. Gravedad Alta");
+            System.out.println("4. Gravedad muy alta");
+            menu = input.nextInt();
+            switch (menu){
+                case 1:
+                    System.out.println("El paciente es de gravedad baja");
+                    gravedad = 1;
+                case 2:
+                    System.out.println("El paciente es de gravedad media");
+                    gravedad = 2;
+                case 3:
+                    System.out.println("El paciente es de gravedad Alta");
+                    gravedad = 3;
+                case 4:
+                    System.out.println("El paciente es de gravedad muy alta");
+                    gravedad = 4;
+            }
+        }while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
+        return gravedad;
     }
 }

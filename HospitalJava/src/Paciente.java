@@ -2,12 +2,14 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private String motivoOperacion;
+    private int gravedad;
 
     // Constructor
-    public Paciente(String nombre, String apellido, String motivoOperacion) {
+    public Paciente(String nombre, String apellido, String motivoOperacion, String gravedad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.motivoOperacion = motivoOperacion;
+        this.gravedad = gravedad;
     }
 
     // Getters y Setters
