@@ -35,6 +35,7 @@ public class Main {
                         break;
                     case 3:
                         System.out.println("Has seleccionado 'Enviar paciente al quirofano'");
+                        enviarPacienteQuirofano();
                         break;
                     case 4:
                         System.out.println("Has seleccionado 'Muestra la relación de pacientes ya operados'");
@@ -52,6 +53,17 @@ public class Main {
             }
         } while (menu != 5);
     }
+
+    private static void enviarPacienteQuirofano() {
+        if (listaEspera.isEmpty()) {
+            System.out.println("No hay pacientes en la lista de espera.");
+            return;
+        }
+
+        Paciente paciente = listaEspera.remove(0);
+        System.out.println("El paciente " + paciente.getNombre() + " " + paciente.getApellido() + " ha sido enviado al quirófano.");
+    }
+
 
     private static void mostrarListaEspera() {
             if (listaEspera.isEmpty()) {
