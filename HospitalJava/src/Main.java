@@ -60,6 +60,17 @@ public class Main {
     }
 
     private static void mostrarPacientesOperados() {
+        if (listaOperados.isEmpty()) {
+            System.out.println("No se han operado pacientes todavía.");
+        } else {
+            System.out.println("Relación de pacientes operados:");
+            for (int i = 0; i < listaOperados.size(); i++) {
+                Paciente paciente = listaOperados.get(i);
+                boolean sobrevivio = listaResultados.get(i);
+                System.out.println((i + 1) + ". " + paciente.getNombre() + " " + paciente.getApellido() +
+                        " - " + (sobrevivio ? "Vivo" : "Fallecido"));
+            }
+        }
     }
 
     private static void enviarPacienteQuirofano() {
@@ -164,17 +175,22 @@ public class Main {
                 case 1:
                     System.out.println("El paciente es de gravedad baja");
                     gravedad = 1;
+                    break;
                 case 2:
                     System.out.println("El paciente es de gravedad media");
                     gravedad = 2;
+                    break;
                 case 3:
                     System.out.println("El paciente es de gravedad Alta");
                     gravedad = 3;
+                    break;
                 case 4:
                     System.out.println("El paciente es de gravedad muy alta");
                     gravedad = 4;
+                    break;
                 default:
                     System.out.println("ERROR, introduce un numero valido");
+                    break;
             }
         }while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
         return gravedad;
